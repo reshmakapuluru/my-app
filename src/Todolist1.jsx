@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import Todo from './Todoo'
 
 function Todolist1(props){
@@ -10,16 +10,16 @@ function Todolist1(props){
         setTodos([...todos,x])
        
     }
-    function delTodo(i){
-        var temp = [...todos]
-        temp.splice(i,1)
-        setTodos([...temp])
-        //alert(i)
-    }
+    var delTodo=React.useCallback(function(i){
+            var temp = [...todos]
+            temp.splice(i,1)
+            setTodos([...temp])
+            //alert(i)
+        },[])
     
     //template
     return (
-        <div className="mybox">
+        <div>
             <h1>Todolist</h1>
             <input type="text" id="in"/>
             <button onClick={addtodo}>Add List</button>
@@ -27,7 +27,8 @@ function Todolist1(props){
             <ul>
                 {
                     todos.map((todo,i)=>{
-                        return <Todo todo={todo} d={delTodo}  i={i}></Todo>
+                        console.log('hello')
+                        return <Todo todo={todo} i={i}></Todo>
                     })
                 }
             </ul>

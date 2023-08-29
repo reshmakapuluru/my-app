@@ -1,6 +1,7 @@
 import React from "react";
 import Todolist1 from "./Todolist1";
 function Todoo(props){
+    console.log('hkll')
     return(
         <div>
            <li className="mytodo">
@@ -12,4 +13,4 @@ function Todoo(props){
         </div>
     )
 }
-export default Todoo;
+export default React.memo(Todoo);
