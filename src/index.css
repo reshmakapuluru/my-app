@@ -11,3 +11,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.mybox{
+  border:1px solid;
+  margin:10px;
+  padding-top: 10px;
+}
+.mytodo{
+  border:1px solid;
+  background-color: red;
+  margin:7px;
+}
+
