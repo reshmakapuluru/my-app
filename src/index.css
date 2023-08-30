@@ -41,4 +41,23 @@ code {
   background-color: green;
   margin-left: 10px;
 }
+.task1{
+  border:1px solid;
+  border-color: red;
+  display: inline-block;
+}
+.task2{
+  border:1px solid;
+  border-color: green;
+  display: inline-block;
+  margin: 10px;
+}
+.list{
+  border:5px solid;
+  border-color: grey;
+  margin:5px;
+  margin-bottom: 30px;
+  padding: 10px;
+
+}
 
