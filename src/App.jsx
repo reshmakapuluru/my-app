@@ -15,16 +15,9 @@ function App() {
     <div>
       
       <div className='mybox'>
-      <Count></Count>
-      <h1>Start StackBlizz!</h1>
-      <div>Start editing to see some magic happen :)</div>
-      <li className='myli'>Praveen</li>
-      <li className='coffee'>Rakesh</li>
-      <li className='myli'>Surya</li>
-      <li className='tea'>Pavan</li>
-      <li className='myli'>Vijay</li>
+        <Colorlist></Colorlist>
       </div>
-      <Colorlist></Colorlist>
+      
       
     </div>
   );
