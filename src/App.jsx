@@ -3,15 +3,17 @@ import './App.css';
 
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.css';
-import Reviews from './Reviews'
+import 'bootstrap/dist/js/bootstrap.bundle.min';
+// import Reviews from './Reviews'
+import Accordion from './Accordion';
 
 function App() {
   
   return (
     <div>
       
-      
-      <Reviews></Reviews>
+      <Accordion></Accordion>
+      {/* <Reviews></Reviews> */}
      
       
     </div>
