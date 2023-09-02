@@ -4,39 +4,55 @@ function Products(){
     var [products,setproducts]=React.useState([])
     var [cart,setcart]=React.useState([])
     React.useEffect(function(){
-      axios.get('https://fakestoreapi.com/products').then((res)=>{
-        setproducts([...res.data])
+      axios.get('https://fakestoreapi.com/products')
+      .then((res)=>{
+        var products = res.data.map((y)=>{
+          return {...y,IsProductInCart:false,count:0}
+      });
+        setproducts([...products])
+        
+
       })
     },[])
-    var count=0
-    function addtocart(a,event){
-      a.count=1
-      setcart([...cart,a])
+   
+    function addtocart(i){
+      var temp=[...products]
+      temp[i].IsProductInCart=true
+       temp[i].count++
+       setcart([...cart,temp[i]])
+    }
+    function addto(i){
+      var temp=[...cart]
+       temp[i].count++
+        setcart(temp)
+    }
+    function add(i){
       
+      var temp=[...cart]
+     
+       temp[i].count--
+      
+        setcart(temp)
     }
-    function inc(b){
-        b.count++
-        setcart([b])
-    }
-    function dec(c){
-        c.count--
-        setcart([c])
-    }
-
     return(
         <div className="d-flex flex-wrap">
-            <div className="w-75">
+            <div style={{width:'60%'}}>
             <ul className="d-flex flex-wrap">
             {
-                products.map((a)=>{
-                    return <div className="card m-2" style={{width: '12rem'}}>
-                    <img className="card-img-top" src={a.image} alt="Card image cap"/>
-                    <div className="card-body">
+                products.map((a,i)=>{
+                    return <div  className="card shadow-lg p-3 mb-5 bg-white rounded m-4 bg-info-subtle text-emphasis-info" style={{width: '14rem'}}>
+                    
+                    <div className="card-body d-flex flex-column justify-content-between"  >
+                    <img src={a.image} style={{height:'160px',width:'160px'}} alt="Card image cap"/>
                       <h5 className="card-title">{a.title}</h5>
-                      <p class="card-text">{a.price}</p>
-                      <button onClick={(event)=>{addtocart(a,event.target.style.display='none')}} id='d1'>Add to Cart</button>
-                      <button onClick={()=>{inc(a)}}>+</button>
-                      <button onClick={()=>{dec(a)}}>-</button>
+                      <p className="card-text">{a.price}</p>
+                      
+                      <div>
+                    
+                      <button  className="btn btn-info" onClick={(ev)=>{addtocart(i)}}  disabled={a.IsProductInCart?true:false}>Add to cart</button>
+                      
+                      
+                      </div>
                       
                     </div>
                   </div>
@@ -44,15 +60,26 @@ function Products(){
             }
            </ul>
             </div>
-            <div className="w-25">
+            <div className='p-3'style={{width:'40%',border:'5px dashed black'}}>
                {
-                cart.length>0 && cart.map((b)=>{
-                    return <li>{b.title}:{b.count}
-                    <button onClick={()=>{inc(b)}}>+</button>
-                      <button onClick={()=>{dec(b)}}>-</button>
-                    </li>
+               
+                cart.length>0 && cart.map((b,ind)=>{
+                    return <div className="card shadow-lg p-3 mb-5 bg-white rounded m-2 bg-info-subtle text-emphasis-info " style={{width: '14rem'}}>
+                       <div className="card-body d-flex flex-column justify-content-between" >
+                      <img src={b.image} style={{height:'160px',width:'160px'}} alt="Card image cap"/>
+                      <h5 className="card-title">{b.title}</h5>
+                      <p className="card-text">{b.price}</p>
+                      <div>
+                    <button className="btn btn-info" onClick={()=>{add(ind)}} disabled={b.count===1?true:false}>-</button>
+                    <span>{b.count}</span>
+                    <button className="btn btn-info" onClick={()=>{addto(ind)}}>+</button>
+
+                    </div>
+                    </div>
+                    </div>
                 })
                }
+               
             </div>
            
         </div>
